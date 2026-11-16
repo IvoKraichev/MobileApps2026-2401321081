@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CineScope</string>
+    <string name="library_title">Моята библиотека</string>
+    <string name="add_movie">Добави заглавие</string>
+    <string name="empty_library">Библиотеката е празна. Добави първото си заглавие.</string>
+
+    <string name="favorite_btn">Любими</string>
+    <string name="watchlist_btn">За гледане</string>
+    <string name="delete_btn">Изтрий</string>
 </resources>
