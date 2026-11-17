@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">CineScope</string>
-    <string name="library_title">Моята библиотека</string>
+    <string name="my_library">Моята библиотека</string>
     <string name="add_movie">Добави заглавие</string>
     <string name="empty_library">Библиотеката е празна. Добави първото си заглавие.</string>
 
     <string name="favorite_btn">Любими</string>
     <string name="watchlist_btn">За гледане</string>
     <string name="delete_btn">Изтрий</string>
+
+    <string name="catalog_title">Каталог</string>
+    <string name="library_title">Библиотека</string>
+
+    <string name="catalog_text">Каталог CineScope</string>
+    <string name="loading_films_text">Тук ще се зареждат филми и сериали от външния API.</string>
 </resources>
