@@ -1,16 +1,11 @@
 package com.myapp.cinescope.ui.library
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
-import android.view.WindowInsets
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -25,64 +20,37 @@ import com.myapp.cinescope.domain.model.MediaType
 import com.myapp.cinescope.domain.model.Movie
 import kotlinx.coroutines.launch
 
-class LibraryActivity : AppCompatActivity() {
-    private val viewModel: LibraryViewModel by viewModels {
-        val app = application as CineScopeApplication
+class LibraryFragment : Fragment(R.layout.fragment_library) {
+    private val viewModel: LibraryViewModel by activityViewModels {
+        val app = requireActivity().application as CineScopeApplication
         LibraryViewModelFactory(app.appContainer.movieRepository)
     }
 
-    private lateinit var root: View
     private lateinit var loadingIndicator: ProgressBar
     private lateinit var emptyLibraryText: TextView
     private lateinit var addMovieButton: MaterialButton
     private lateinit var adapter: LibraryMovieAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_library)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        root = findViewById(R.id.libraryRoot)
-        loadingIndicator = findViewById(R.id.loadingIndicator)
-        emptyLibraryText = findViewById(R.id.emptyLibraryText)
-        addMovieButton = findViewById(R.id.addMovieButton)
+        loadingIndicator = view.findViewById(R.id.loadingIndicator)
+        emptyLibraryText = view.findViewById(R.id.emptyLibraryText)
+        addMovieButton = view.findViewById(R.id.addMovieButton)
 
-        applySystemInsets()
-        configureList()
-        observeUiState()
+        configureList(view)
+        observeUiState(view)
 
         addMovieButton.setOnClickListener {
             Snackbar.make(
-                root,
+                view,
                 "Формата за добавяне ще бъде следващата стъпка.",
                 Snackbar.LENGTH_SHORT
             ).show()
         }
     }
 
-    private fun applySystemInsets() {
-        val initialLeft = root.paddingLeft
-        val initialTop = root.paddingTop
-        val initialRight = root.paddingRight
-        val initialBottom = root.paddingBottom
-
-        ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
-            val systemBars = insets.getInsets(
-                WindowInsetsCompat.Type.systemBars()
-            )
-
-            view.setPadding(
-                initialLeft + systemBars.left,
-                initialTop + systemBars.top,
-                initialRight + systemBars.right,
-                initialBottom + systemBars.bottom
-            )
-
-            insets
-        }
-    }
-
-    private fun configureList() {
+    private fun configureList(root: View) {
         adapter = LibraryMovieAdapter(
             onOpen = ::showMovieDetails,
             onFavorite = { movie ->
@@ -98,21 +66,21 @@ class LibraryActivity : AppCompatActivity() {
             onDelete = ::confirmDelete
         )
 
-        findViewById<RecyclerView>(R.id.libraryRecyclerView).apply {
-            layoutManager = LinearLayoutManager(this@LibraryActivity)
-            adapter = this@LibraryActivity.adapter
+        root.findViewById<RecyclerView>(R.id.libraryRecyclerView).apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = this@LibraryFragment.adapter
         }
     }
 
-    private fun observeUiState() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect(::render)
+    private fun observeUiState(root: View) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { state -> render(root, state) }
             }
         }
     }
 
-    private fun render(state: LibraryUiState) {
+    private fun render(root: View, state: LibraryUiState) {
         adapter.submitList(state.movies)
 
         loadingIndicator.visibility = if (state.isLoading) {
@@ -130,11 +98,9 @@ class LibraryActivity : AppCompatActivity() {
 
         addMovieButton.isEnabled = !state.isSaving
 
-        state.errorMessage?.let { message ->
+        val message = state.errorMessage ?: state.message
+        if (message != null) {
             Snackbar.make(root, message, Snackbar.LENGTH_LONG).show()
-            viewModel.clearMessages()
-        } ?: state.message?.let { message ->
-            Snackbar.make(root, message, Snackbar.LENGTH_SHORT).show()
             viewModel.clearMessages()
         }
     }
@@ -157,7 +123,7 @@ class LibraryActivity : AppCompatActivity() {
             }
         }
 
-        MaterialAlertDialogBuilder(this)
+        MaterialAlertDialogBuilder(requireContext())
             .setTitle(movie.title)
             .setMessage(details)
             .setPositiveButton("Затвори", null)
@@ -169,7 +135,7 @@ class LibraryActivity : AppCompatActivity() {
     private fun confirmDelete(movie: Movie) {
         val localId = movie.localId ?: return
 
-        MaterialAlertDialogBuilder(this)
+        MaterialAlertDialogBuilder(requireContext())
             .setTitle("Изтриване на заглавие")
             .setMessage("Да изтрием ли \"${movie.title}\" от библиотеката?")
             .setNegativeButton("Отказ", null)

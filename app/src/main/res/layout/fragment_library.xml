@@ -10,7 +10,7 @@
         android:id="@+id/libraryToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:title="@string/library_title" />
+        android:title="@string/my_library" />
 
     <Button
         android:id="@+id/addMovieButton"
