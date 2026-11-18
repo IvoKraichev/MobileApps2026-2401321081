@@ -13,4 +13,24 @@
 
     <string name="catalog_text">Каталог CineScope</string>
     <string name="loading_films_text">Тук ще се зареждат филми и сериали от външния API.</string>
+
+    <string name="movie_form_add_title">Добави заглавие</string>
+    <string name="movie_form_edit_title">Редактирай заглавие</string>
+    <string name="movie_title_label">Заглавие</string>
+    <string name="movie_type_label">Тип</string>
+    <string name="movie_type_movie">Филм</string>
+    <string name="movie_type_tv">Сериал</string>
+    <string name="movie_release_date_label">Дата на излизане</string>
+    <string name="movie_genres_label">Жанрове</string>
+    <string name="movie_overview_label">Описание</string>
+    <string name="movie_user_rating_label">Моята оценка (0–10)</string>
+    <string name="movie_notes_label">Лични бележки</string>
+    <string name="movie_favorite_label">Любимо</string>
+    <string name="movie_watchlist_label">За гледане</string>
+    <string name="movie_save">Запази</string>
+    <string name="movie_cancel">Отказ</string>
+    <string name="movie_title_required">Въведи заглавие.</string>
+    <string name="movie_type_required">Избери тип.</string>
+    <string name="movie_rating_invalid">Оценката трябва да е число между 0 и 10.</string>
+    <string name="movie_not_found">Записът не беше намерен.</string>
 </resources>

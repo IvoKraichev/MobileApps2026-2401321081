@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.View
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,5 +27,14 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
         bottomNavigation.setupWithNavController(navHost.navController)
+
+        navHost.navController.addOnDestinationChangedListener { _, destination, _ ->
+            bottomNavigation.visibility =
+                if (destination.id == R.id.movieFormFragment) {
+                    View.GONE
+                } else {
+                    View.VISIBLE
+                }
+        }
     }
 }
