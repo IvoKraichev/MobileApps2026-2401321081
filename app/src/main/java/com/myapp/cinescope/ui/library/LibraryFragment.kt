@@ -19,6 +19,8 @@ import com.myapp.cinescope.R
 import com.myapp.cinescope.domain.model.MediaType
 import com.myapp.cinescope.domain.model.Movie
 import kotlinx.coroutines.launch
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 
 class LibraryFragment : Fragment(R.layout.fragment_library) {
     private val viewModel: LibraryViewModel by activityViewModels {
@@ -42,11 +44,9 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         observeUiState(view)
 
         addMovieButton.setOnClickListener {
-            Snackbar.make(
-                view,
-                "Формата за добавяне ще бъде следващата стъпка.",
-                Snackbar.LENGTH_SHORT
-            ).show()
+            viewModel.clearMessages()
+            viewModel.clearSelectedMovie()
+            openEditor(MovieFormFragment.NEW_MOVIE_ID)
         }
     }
 
@@ -126,10 +126,11 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(movie.title)
             .setMessage(details)
-            .setPositiveButton("Затвори", null)
-            .setOnDismissListener {
-                viewModel.clearSelectedMovie()
-            }.show()
+            .setPositiveButton(R.string.movie_form_edit_title) { _, _ ->
+                movie.localId?.let(::openEditor)
+            }
+            .setNegativeButton(R.string.movie_cancel, null)
+            .show()
     }
 
     private fun confirmDelete(movie: Movie) {
@@ -142,5 +143,12 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
             .setPositiveButton("Изтрий") { _, _ ->
                 viewModel.deleteMovie(localId)
             }.show()
+    }
+
+    private fun openEditor(localId: Long) {
+        findNavController().navigate(
+            R.id.action_libraryFragment_to_movieFormFragment,
+            bundleOf(MovieFormFragment.ARG_MOVIE_ID to localId)
+        )
     }
 }
