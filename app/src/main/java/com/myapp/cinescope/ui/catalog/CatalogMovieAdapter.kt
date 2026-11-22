@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.google.android.material.button.MaterialButton
 import com.myapp.cinescope.R
 import com.myapp.cinescope.domain.model.MediaType
 import com.myapp.cinescope.domain.model.Movie
+import com.myapp.cinescope.ui.images.loadTmdbPoster
 
 class CatalogMovieAdapter(
     private val onAddToLibrary: (Movie) -> Unit,
@@ -36,6 +38,8 @@ class CatalogMovieAdapter(
             itemView.findViewById(R.id.catalogMovieMetadata)
         private val overview: TextView =
             itemView.findViewById(R.id.catalogMovieOverview)
+        private val poster: ImageView =
+            itemView.findViewById(R.id.catalogMoviePoster)
         private val addButton: MaterialButton =
             itemView.findViewById(R.id.addToLibraryButton)
 
@@ -63,6 +67,11 @@ class CatalogMovieAdapter(
             overview.text = movie.overview.ifBlank {
                 "Няма описание"
             }
+
+            poster.loadTmdbPoster(
+                posterPath = movie.posterPath,
+                title = movie.title
+            )
 
             addButton.setOnClickListener {
                 onAddToLibrary(movie)

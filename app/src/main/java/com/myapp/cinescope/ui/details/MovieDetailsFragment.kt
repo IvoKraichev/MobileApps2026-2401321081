@@ -3,6 +3,7 @@ package com.myapp.cinescope.ui.details
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import com.myapp.cinescope.CineScopeApplication
 import com.myapp.cinescope.R
 import com.myapp.cinescope.domain.model.MediaType
 import com.myapp.cinescope.domain.model.Movie
+import com.myapp.cinescope.ui.images.loadTmdbPoster
 import com.myapp.cinescope.ui.library.LibraryViewModel
 import com.myapp.cinescope.ui.library.LibraryViewModelFactory
 import kotlinx.coroutines.launch
@@ -28,6 +30,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     }
 
     private lateinit var movie: Movie
+    private lateinit var posterImage: ImageView
     private lateinit var titleText: TextView
     private lateinit var metadataText: TextView
     private lateinit var genresText: TextView
@@ -43,6 +46,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
 
         movie = readMovieArguments(requireArguments())
 
+        posterImage = view.findViewById(R.id.detailsPoster)
         titleText = view.findViewById(R.id.detailsTitle)
         metadataText = view.findViewById(R.id.detailsMetadata)
         genresText = view.findViewById(R.id.detailsGenres)
@@ -112,6 +116,12 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     }
 
     private fun renderMovie(value: Movie) {
+        posterImage.loadTmdbPoster(
+            posterPath = value.posterPath,
+            title = value.title,
+            size = "w500"
+        )
+
         titleText.text = value.title
 
         val mediaLabel = when (value.mediaType) {
