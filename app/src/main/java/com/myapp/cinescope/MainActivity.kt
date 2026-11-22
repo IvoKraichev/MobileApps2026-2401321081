@@ -30,7 +30,10 @@ class MainActivity : AppCompatActivity() {
 
         navHost.navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNavigation.visibility =
-                if (destination.id == R.id.movieFormFragment) {
+                if (
+                    destination.id == R.id.movieFormFragment ||
+                    destination.id == R.id.movieDetailsFragment
+                ) {
                     View.GONE
                 } else {
                     View.VISIBLE

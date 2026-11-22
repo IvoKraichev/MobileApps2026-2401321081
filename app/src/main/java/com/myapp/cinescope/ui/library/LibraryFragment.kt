@@ -21,6 +21,7 @@ import com.myapp.cinescope.domain.model.Movie
 import kotlinx.coroutines.launch
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import com.myapp.cinescope.ui.details.MovieDetailsFragment
 
 class LibraryFragment : Fragment(R.layout.fragment_library) {
     private val viewModel: LibraryViewModel by activityViewModels {
@@ -106,31 +107,10 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
     }
 
     private fun showMovieDetails(movie: Movie) {
-        movie.localId?.let(viewModel::selectMovie)
-
-        val details = buildString {
-            append(
-                when (movie.mediaType) {
-                    MediaType.MOVIE -> "Филм"
-                    MediaType.TV_SHOW -> "Сериал"
-                }
-            )
-            movie.releaseDate?.take(4)?.let { append(" · $it") }
-            append("\n\n")
-            append(movie.overview.ifBlank { "Няма описание." })
-            movie.userRating?.let {
-                append("\n\nМоята оценка: $it / 10")
-            }
-        }
-
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(movie.title)
-            .setMessage(details)
-            .setPositiveButton(R.string.movie_form_edit_title) { _, _ ->
-                movie.localId?.let(::openEditor)
-            }
-            .setNegativeButton(R.string.movie_cancel, null)
-            .show()
+        findNavController().navigate(
+            R.id.action_libraryFragment_to_movieDetailsFragment,
+            MovieDetailsFragment.argumentsFor(movie)
+        )
     }
 
     private fun confirmDelete(movie: Movie) {

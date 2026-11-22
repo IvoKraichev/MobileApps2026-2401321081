@@ -39,5 +39,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/add_to_library" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/openMovieDetailsButton"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_details" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -20,6 +20,14 @@
     <string name="tmdb_attribution">This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
 
     <string name="add_to_library">Добави в личната библиотека</string>
+    <string name="movie_details">Подробности</string>
+
+    <string name="back_button">Назад</string>
+    <string name="share_title_button">Сподели заглавието</string>
+    <string name="add_details_to_library">Добави в библиотеката</string>
+    <string name="add_to_favorite">Добави в любими</string>
+    <string name="add_to_watchlist">Добави за гледане</string>
+    <string name="edit_info">Редактирай личните данни</string>
 
     <string name="movie_form_add_title">Добави заглавие</string>
     <string name="movie_form_edit_title">Редактирай заглавие</string>
