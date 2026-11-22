@@ -9,4 +9,14 @@
         android:id="@+id/libraryFragment"
         android:icon="@android:drawable/ic_menu_agenda"
         android:title="@string/library_title" />
+
+    <item
+        android:id="@+id/favoritesFragment"
+        android:icon="@android:drawable/btn_star_big_on"
+        android:title="@string/favorites_title"/>
+
+    <item
+        android:id="@+id/watchlistFragment"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="@string/watchlist_title" />
 </menu>
