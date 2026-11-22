@@ -58,6 +58,12 @@ class CatalogViewModel(
         }
     }
 
+    fun setGenreFilter(genre: String?) {
+        _uiState.update {
+            it.copy(selectedGenre = genre)
+        }
+    }
+
     fun retry() {
         val query = uiState.value.query
 
@@ -87,6 +93,7 @@ class CatalogViewModel(
                 _uiState.update {
                     it.copy(
                         results = results,
+                        selectedGenre = null,
                         isLoading = false,
                         errorMessage = null
                     )

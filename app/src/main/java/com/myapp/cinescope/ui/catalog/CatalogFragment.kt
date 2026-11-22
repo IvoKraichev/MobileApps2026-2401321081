@@ -2,6 +2,7 @@ package com.myapp.cinescope.ui.catalog
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
 import com.myapp.cinescope.CineScopeApplication
 import com.myapp.cinescope.R
@@ -39,6 +41,8 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
 
     private lateinit var root: View
     private lateinit var searchInput: TextInputEditText
+    private lateinit var genreFilter: MaterialAutoCompleteTextView
+    private var genreOptions: List<String> = emptyList()
     private lateinit var progress: ProgressBar
     private lateinit var statusText: TextView
     private lateinit var retryButton: MaterialButton
@@ -52,8 +56,21 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
 
         root = view
         searchInput = view.findViewById(R.id.catalogSearchInput)
+
         val mediaTypeFilterGroup =
             view.findViewById<MaterialButtonToggleGroup>(R.id.mediaTypeFilterGroup)
+
+        genreFilter = view.findViewById(R.id.genreFilter)
+
+        genreFilter.setOnItemClickListener { parent, _, position, _ ->
+            val selectedOption = parent.getItemAtPosition(position).toString()
+
+            catalogViewModel.setGenreFilter(
+                selectedOption.takeUnless {
+                    it == getString(R.string.all_genres)
+                }
+            )
+        }
         progress = view.findViewById(R.id.catalogProgress)
         statusText = view.findViewById(R.id.catalogStatus)
         retryButton = view.findViewById(R.id.retryButton)
@@ -142,6 +159,8 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
                         adapter.submitList(state.visibleResults)
                     }
 
+                    renderGenreFilter(state)
+
                     progress.visibility =
                         if (state.isLoading) View.VISIBLE else View.GONE
 
@@ -212,5 +231,28 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
                         .start()
                 }
             }.start()
+    }
+
+    private fun renderGenreFilter(state: CatalogUiState) {
+        val allGenresLabel = getString(R.string.all_genres)
+        val options = listOf(allGenresLabel) + state.availableGenres
+
+        if (genreFilter.adapter == null || options != genreOptions) {
+            genreOptions = options
+
+            genreFilter.setAdapter(
+                ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    options
+                )
+            )
+        }
+
+        val selectedOption = state.selectedGenre ?: allGenresLabel
+
+        if (genreFilter.text.toString() != selectedOption) {
+            genreFilter.setText(selectedOption, false)
+        }
     }
 }
