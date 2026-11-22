@@ -12,7 +12,14 @@
     <string name="library_title">Библиотека</string>
 
     <string name="catalog_text">Каталог CineScope</string>
-    <string name="loading_films_text">Тук ще се зареждат филми и сериали от външния API.</string>
+    <string name="search_film_or_tv">Търси филм или сериал</string>
+    <string name="search_button">Търси</string>
+    <string name="title_type">Тип заглавие</string>
+    <string name="movie_type_all">Всички</string>
+    <string name="try_again_button">Опитай отново</string>
+    <string name="tmdb_attribution">This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
+
+    <string name="add_to_library">Добави в личната библиотека</string>
 
     <string name="movie_form_add_title">Добави заглавие</string>
     <string name="movie_form_edit_title">Редактирай заглавие</string>

@@ -3,10 +3,19 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
+val tmdbReadToken = providers
+    .gradleProperty("TMDB_READ_ACCESS_TOKEN")
+    .orElse("")
+    .get()
+
 android {
     namespace = "com.myapp.cinescope"
     compileSdk {
         version = release(37)
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     defaultConfig {
@@ -15,6 +24,11 @@ android {
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
+        buildConfigField(
+            "String",
+            "TMDB_READ_ACCESS_TOKEN",
+            "\"$tmdbReadToken\""
+        )
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,6 +62,8 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     ksp(libs.androidx.room3.compiler)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
