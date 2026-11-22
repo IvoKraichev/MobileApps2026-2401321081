@@ -27,6 +27,9 @@
     <string name="favorites_empty">Още няма добавени любими заглавия.</string>
     <string name="watchlist_empty">Списъкът за гледане е празен.</string>
 
+    <string name="genre_filter_hint">Филтрирай по жанр</string>
+    <string name="all_genres">Всички жанрове</string>
+
     <string name="back_button">Назад</string>
     <string name="share_title_button">Сподели заглавието</string>
     <string name="add_details_to_library">Добави в библиотеката</string>
