@@ -10,7 +10,12 @@
         android:id="@+id/catalogFragment"
         android:name="com.myapp.cinescope.ui.catalog.CatalogFragment"
         android:label="Каталог"
-        tools:layout="@layout/fragment_catalog"/>
+        tools:layout="@layout/fragment_catalog">
+
+        <action
+            android:id="@+id/action_catalogFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/libraryFragment"
@@ -22,6 +27,21 @@
             android:id="@+id/action_libraryFragment_to_movieFormFragment"
             app:destination="@id/movieFormFragment" />
 
+        <action
+            android:id="@+id/action_libraryFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.myapp.cinescope.ui.details.MovieDetailsFragment"
+        android:label="Подробности"
+        tools:layout="@layout/fragment_movie_details">
+
+        <action
+            android:id="@+id/action_movieDetailsFragment_to_movieFormFragment"
+            app:destination="@id/movieFormFragment" />
     </fragment>
 
     <fragment

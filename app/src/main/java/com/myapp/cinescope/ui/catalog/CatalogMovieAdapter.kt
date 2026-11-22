@@ -13,7 +13,8 @@ import com.myapp.cinescope.domain.model.MediaType
 import com.myapp.cinescope.domain.model.Movie
 
 class CatalogMovieAdapter(
-    private val onAddToLibrary: (Movie) -> Unit
+    private val onAddToLibrary: (Movie) -> Unit,
+    private val onOpenDetails: (Movie) -> Unit
 ) : ListAdapter<Movie, CatalogMovieAdapter.MovieViewHolder>(DiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -37,6 +38,9 @@ class CatalogMovieAdapter(
             itemView.findViewById(R.id.catalogMovieOverview)
         private val addButton: MaterialButton =
             itemView.findViewById(R.id.addToLibraryButton)
+
+        private val detailsButton: MaterialButton =
+            itemView.findViewById(R.id.openMovieDetailsButton)
 
         fun bind(movie: Movie) {
             title.text = movie.title
@@ -62,6 +66,10 @@ class CatalogMovieAdapter(
 
             addButton.setOnClickListener {
                 onAddToLibrary(movie)
+            }
+
+            detailsButton.setOnClickListener {
+                onOpenDetails(movie)
             }
         }
     }

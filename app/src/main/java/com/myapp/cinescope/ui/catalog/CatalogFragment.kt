@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
@@ -20,6 +21,7 @@ import com.myapp.cinescope.CineScopeApplication
 import com.myapp.cinescope.R
 import com.myapp.cinescope.domain.model.MediaType
 import com.myapp.cinescope.domain.model.Movie
+import com.myapp.cinescope.ui.details.MovieDetailsFragment
 import com.myapp.cinescope.ui.library.LibraryViewModel
 import com.myapp.cinescope.ui.library.LibraryViewModelFactory
 import kotlinx.coroutines.launch
@@ -101,14 +103,22 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
     }
 
     private fun configureList(view: View) {
-        adapter = CatalogMovieAdapter { movie ->
+        adapter = CatalogMovieAdapter(
+            onAddToLibrary = { movie ->
             libraryViewModel.saveMovie(movie)
             Snackbar.make(
                 root,
                 "Запазвам заглавието в личната библиотека...",
                 Snackbar.LENGTH_SHORT
             ).show()
-        }
+        },
+            onOpenDetails = { movie ->
+                findNavController().navigate(
+                    R.id.action_catalogFragment_to_movieDetailsFragment,
+                    MovieDetailsFragment.argumentsFor(movie)
+                )
+            }
+        )
 
         catalogRecyclerView = view.findViewById(R.id.catalogRecyclerView)
 
