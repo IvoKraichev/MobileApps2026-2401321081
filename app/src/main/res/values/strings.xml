@@ -21,6 +21,11 @@
 
     <string name="add_to_library">Добави в личната библиотека</string>
     <string name="movie_details">Подробности</string>
+    
+    <string name="favorites_title">Любими</string>
+    <string name="watchlist_title">За гледане</string>
+    <string name="favorites_empty">Още няма добавени любими заглавия.</string>
+    <string name="watchlist_empty">Списъкът за гледане е празен.</string>
 
     <string name="back_button">Назад</string>
     <string name="share_title_button">Сподели заглавието</string>
