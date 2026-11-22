@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.google.android.material.button.MaterialButton
 import com.myapp.cinescope.R
 import com.myapp.cinescope.domain.model.MediaType
 import com.myapp.cinescope.domain.model.Movie
+import com.myapp.cinescope.ui.images.loadTmdbPoster
 
 class LibraryMovieAdapter(
     private val onOpen: (Movie) -> Unit,
@@ -32,6 +34,8 @@ class LibraryMovieAdapter(
     inner class MovieViewHolder(
         itemView: View
     ): RecyclerView.ViewHolder(itemView) {
+        private val poster: ImageView =
+            itemView.findViewById(R.id.libraryMoviePoster)
         private val title: TextView = itemView.findViewById(R.id.movieTitle)
         private val subtitle: TextView = itemView.findViewById(R.id.movieSubtitle)
         private val favoriteButton: MaterialButton = itemView.findViewById(R.id.favoriteButton)
@@ -39,6 +43,12 @@ class LibraryMovieAdapter(
         private val deleteButton: MaterialButton = itemView.findViewById(R.id.deleteMovieButton)
 
         fun bind(movie: Movie) {
+            poster.loadTmdbPoster(
+                posterPath = movie.posterPath,
+                title = movie.title,
+                size = "w342"
+            )
+
             title.text = movie.title
 
             val typeLabel = when (movie.mediaType) {
