@@ -7,8 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.View
+import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,12 +24,13 @@ class MainActivity : AppCompatActivity() {
         val navHost = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
-        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        val navigationBar =
+            findViewById<NavigationBarView>(R.id.bottomNavigation)
 
-        bottomNavigation.setupWithNavController(navHost.navController)
+        navigationBar.setupWithNavController(navHost.navController)
 
         navHost.navController.addOnDestinationChangedListener { _, destination, _ ->
-            bottomNavigation.visibility =
+            navigationBar.visibility =
                 if (
                     destination.id == R.id.movieFormFragment ||
                     destination.id == R.id.movieDetailsFragment
