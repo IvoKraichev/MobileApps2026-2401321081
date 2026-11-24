@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style
+        name="TextAppearance.CineScope.HeadlineSmall"
+        parent="TextAppearance.Material3.HeadlineSmall">
+
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style
+        name="TextAppearance.CineScope.TitleMedium"
+        parent="TextAppearance.Material3.TitleMedium">
+
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style
+        name="TextAppearance.CineScope.BodyLarge"
+        parent="TextAppearance.Material3.BodyLarge">
+
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="fontFamily">sans-serif</item>
+    </style>
+
+    <style
+        name="TextAppearance.CineScope.BodyMedium"
+        parent="TextAppearance.Material3.BodyMedium">
+
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="fontFamily">sans-serif</item>
+    </style>
+
+    <style
+        name="TextAppearance.CineScope.BodySmall"
+        parent="TextAppearance.Material3.BodySmall">
+
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="fontFamily">sans-serif</item>
+    </style>
+
+    <style
+        name="TextAppearance.CineScope.LabelLarge"
+        parent="TextAppearance.Material3.LabelLarge">
+
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+</resources>

@@ -12,6 +12,7 @@ import com.google.android.material.button.MaterialButton
 import com.myapp.cinescope.R
 import com.myapp.cinescope.domain.model.MediaType
 import com.myapp.cinescope.domain.model.Movie
+import com.myapp.cinescope.ui.common.bindMovieRatings
 import com.myapp.cinescope.ui.images.loadTmdbPoster
 
 class LibraryMovieAdapter(
@@ -38,6 +39,7 @@ class LibraryMovieAdapter(
             itemView.findViewById(R.id.libraryMoviePoster)
         private val title: TextView = itemView.findViewById(R.id.movieTitle)
         private val subtitle: TextView = itemView.findViewById(R.id.movieSubtitle)
+        private val ratings: TextView = itemView.findViewById(R.id.libraryMovieRatings)
         private val favoriteButton: MaterialButton = itemView.findViewById(R.id.favoriteButton)
         private val watchlistButton: MaterialButton = itemView.findViewById(R.id.watchlistButton)
         private val deleteButton: MaterialButton = itemView.findViewById(R.id.deleteMovieButton)
@@ -56,9 +58,9 @@ class LibraryMovieAdapter(
                 MediaType.TV_SHOW -> "Сериал"
             }
             val year = movie.releaseDate?.take(4) ?: "Без година"
-            val rating = movie.averageRating?.let { " · TMDB $it" }.orEmpty()
 
-            subtitle.text = "$typeLabel · $year$rating"
+            subtitle.text = "$typeLabel · $year"
+            ratings.bindMovieRatings(movie)
 
             favoriteButton.text = if (movie.isFavorite) {
                 "Премахни от любими"

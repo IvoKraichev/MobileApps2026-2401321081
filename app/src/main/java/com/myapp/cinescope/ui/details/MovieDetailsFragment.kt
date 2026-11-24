@@ -18,6 +18,7 @@ import com.myapp.cinescope.CineScopeApplication
 import com.myapp.cinescope.R
 import com.myapp.cinescope.domain.model.MediaType
 import com.myapp.cinescope.domain.model.Movie
+import com.myapp.cinescope.ui.common.bindMovieRatings
 import com.myapp.cinescope.ui.images.loadTmdbPoster
 import com.myapp.cinescope.ui.library.LibraryViewModel
 import com.myapp.cinescope.ui.library.LibraryViewModelFactory
@@ -33,6 +34,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     private lateinit var posterImage: ImageView
     private lateinit var titleText: TextView
     private lateinit var metadataText: TextView
+    private lateinit var ratingsText: TextView
     private lateinit var genresText: TextView
     private lateinit var overviewText: TextView
     private lateinit var personalInfoText: TextView
@@ -49,6 +51,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         posterImage = view.findViewById(R.id.detailsPoster)
         titleText = view.findViewById(R.id.detailsTitle)
         metadataText = view.findViewById(R.id.detailsMetadata)
+        ratingsText = view.findViewById(R.id.detailsRatings)
         genresText = view.findViewById(R.id.detailsGenres)
         overviewText = view.findViewById(R.id.detailsOverview)
         personalInfoText = view.findViewById(R.id.detailsPersonalInfo)
@@ -129,22 +132,23 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
             MediaType.TV_SHOW -> "Сериал"
         }
         val year = value.releaseDate?.take(4) ?: "Без година"
-        val rating = value.averageRating
-            ?.let { " · TMDB ${"%.1f".format(it)}" }
-            .orEmpty()
 
-        metadataText.text = "$mediaLabel · $year$rating"
+        metadataText.text = "$mediaLabel · $year"
+        ratingsText.bindMovieRatings(value)
         genresText.text = value.genreNames.ifBlank { "Жанровете не са посочени." }
         overviewText.text = value.overview.ifBlank { "Няма описание." }
 
         personalInfoText.text = buildString {
             append("Лична оценка: ")
             append(value.userRating?.let { "$it / 10" } ?: "няма")
+
             if (value.personalNotes.isNotBlank()) {
                 append("\nБележки: ")
                 append(value.personalNotes)
             }
         }
+
+        personalInfoText.visibility = View.VISIBLE
 
         val isInLibrary = value.localId != null
         addButton.visibility = if (isInLibrary) View.GONE else View.VISIBLE

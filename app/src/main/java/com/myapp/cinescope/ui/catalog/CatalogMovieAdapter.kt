@@ -13,6 +13,7 @@ import com.myapp.cinescope.R
 import com.myapp.cinescope.domain.model.MediaType
 import com.myapp.cinescope.domain.model.Movie
 import com.myapp.cinescope.ui.images.loadTmdbPoster
+import com.myapp.cinescope.ui.common.bindMovieRatings
 
 class CatalogMovieAdapter(
     private val onAddToLibrary: (Movie) -> Unit,
@@ -36,6 +37,8 @@ class CatalogMovieAdapter(
             itemView.findViewById(R.id.catalogMovieTitle)
         private val metadata: TextView =
             itemView.findViewById(R.id.catalogMovieMetadata)
+        private val ratings: TextView =
+            itemView.findViewById(R.id.catalogMovieRatings)
         private val overview: TextView =
             itemView.findViewById(R.id.catalogMovieOverview)
         private val poster: ImageView =
@@ -55,15 +58,14 @@ class CatalogMovieAdapter(
             }
 
             val year = movie.releaseDate?.take(4) ?: "Без година"
-            val rating = movie.averageRating
-                ?.let { " · TMDB ${"%.1f".format(it)}" }
-                .orEmpty()
             val genres = movie.genreNames
                 .takeIf(String::isNotBlank)
                 ?.let { " · $it" }
                 .orEmpty()
 
-            metadata.text = "$type · $year$rating$genres"
+            metadata.text = "$type · $year$genres"
+            ratings.bindMovieRatings(movie)
+
             overview.text = movie.overview.ifBlank {
                 "Няма описание"
             }
