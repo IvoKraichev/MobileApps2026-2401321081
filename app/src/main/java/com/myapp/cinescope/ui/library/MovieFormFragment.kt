@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ProgressBar
+import android.widget.Filter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -107,13 +108,40 @@ class MovieFormFragment : Fragment(R.layout.fragment_movie_form) {
             getString(R.string.movie_type_tv)
         )
 
-        typeInput.setAdapter(
-            ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_list_item_1,
-                typeLabels
-            )
-        )
+        val typeAdapter = object : ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            typeLabels.toMutableList()
+        ) {
+            override fun getFilter(): Filter {
+                return object : Filter() {
+                    override fun performFiltering(constraint: CharSequence?): FilterResults? {
+                        return FilterResults().apply {
+                            values = typeLabels
+                            count = typeLabels.size
+                        }
+                    }
+
+                    override fun publishResults(
+                        constraint: CharSequence?,
+                        results: Filter.FilterResults?
+                    ) {
+                        val items = (results?.values as? List<*>)
+                            ?.filterIsInstance<String>()
+                            .orEmpty()
+
+                        clear()
+                        addAll(items.ifEmpty { typeLabels })
+                    }
+
+                    override fun convertResultToString(resultValue: Any?): CharSequence? {
+                        return resultValue.toString()
+                    }
+                }
+            }
+        }
+
+        typeInput.setAdapter(typeAdapter)
     }
 
     private fun observeState() {

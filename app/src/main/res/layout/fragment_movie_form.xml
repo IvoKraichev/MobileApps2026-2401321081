@@ -17,7 +17,7 @@
             android:id="@+id/formHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="?attr/textAppearanceHeadlineSmall" />
+            android:textAppearance="?attr/textAppearanceHeadlineSmall" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/titleInputLayout"
