@@ -16,7 +16,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/catalog_text"
+            android:text="@string/catalog_title"
             android:textAppearance="?attr/textAppearanceHeadlineSmall"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -55,6 +55,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:minWidth="0dp"
+                android:insetLeft="0dp"
+                android:insetRight="0dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:maxLines="1"
+                android:textSize="12sp"
                 android:text="@string/movie_type_all" />
 
             <com.google.android.material.button.MaterialButton
@@ -63,6 +70,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:minWidth="0dp"
+                android:insetLeft="0dp"
+                android:insetRight="0dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:maxLines="1"
+                android:textSize="12sp"
                 android:text="@string/movie_type_movie" />
 
             <com.google.android.material.button.MaterialButton
@@ -71,6 +85,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:minWidth="0dp"
+                android:insetLeft="0dp"
+                android:insetRight="0dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:maxLines="1"
+                android:textSize="12sp"
                 android:text="@string/movie_type_tv" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -79,7 +100,7 @@
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:hint="@string/genre_filter_hint">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView

@@ -44,6 +44,14 @@
                     android:textAppearance="?attr/textAppearanceBodyMedium" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/catalogMovieRatings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:visibility="gone"/>
+
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/catalogMovieOverview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

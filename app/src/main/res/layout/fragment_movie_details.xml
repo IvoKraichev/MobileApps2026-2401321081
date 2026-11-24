@@ -42,6 +42,14 @@
             android:textAppearance="?attr/textAppearanceBodyLarge" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/detailsRatings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:visibility="gone"/>
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/detailsGenres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

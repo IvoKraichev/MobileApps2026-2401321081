@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cine_primary">#FFB4AB</color>
+    <color name="cine_on_primary">#690005</color>
+    <color name="cine_primary_container">#93000A</color>
+    <color name="cine_on_primary_container">#FFDAD6</color>
+
+    <color name="cine_secondary">#BBC7DD</color>
+    <color name="cine_on_secondary">#253140</color>
+    <color name="cine_secondary_container">#3C475A</color>
+    <color name="cine_on_secondary_container">#D7E3F8</color>
+
+    <color name="cine_tertiary">#E9C46A</color>
+    <color name="cine_on_tertiary">#3D2F00</color>
+    <color name="cine_tertiary_container">#574500</color>
+    <color name="cine_on_tertiary_container">#FFE08A</color>
+
+    <color name="cine_background">#101827</color>
+    <color name="cine_on_background">#F3EDEB</color>
+    <color name="cine_surface">#171E2B</color>
+    <color name="cine_on_surface">#F3EDEB</color>
+    <color name="cine_surface_variant">#484149</color>
+    <color name="cine_on_surface_variant">#D2C3C2</color>
+    <color name="cine_outline">#9B8D8D</color>
+
+    <color name="cine_error">#FFB4AB</color>
+    <color name="cine_on_error">#690005</color>
+</resources>

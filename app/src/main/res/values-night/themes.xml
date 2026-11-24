@@ -3,5 +3,48 @@
     <style name="Base.Theme.CineScope" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/cine_primary</item>
+        <item name="colorOnPrimary">@color/cine_on_primary</item>
+        <item name="colorPrimaryContainer">@color/cine_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/cine_on_primary_container</item>
+
+        <item name="colorSecondary">@color/cine_secondary</item>
+        <item name="colorOnSecondary">@color/cine_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/cine_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/cine_on_secondary_container</item>
+
+        <item name="colorTertiary">@color/cine_tertiary</item>
+        <item name="colorOnTertiary">@color/cine_on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/cine_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/cine_on_tertiary_container</item>
+
+        <item name="android:colorBackground">@color/cine_background</item>
+        <item name="colorSurface">@color/cine_surface</item>
+        <item name="colorOnSurface">@color/cine_on_surface</item>
+        <item name="colorSurfaceVariant">@color/cine_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/cine_on_surface_variant</item>
+        <item name="colorOutline">@color/cine_outline</item>
+
+        <item name="colorError">@color/cine_error</item>
+        <item name="colorOnError">@color/cine_on_error</item>
+
+        <item name="textAppearanceHeadlineSmall">
+            @style/TextAppearance.CineScope.HeadlineSmall
+        </item>
+        <item name="textAppearanceTitleMedium">
+            @style/TextAppearance.CineScope.TitleMedium
+        </item>
+        <item name="textAppearanceBodyLarge">
+            @style/TextAppearance.CineScope.BodyLarge
+        </item>
+        <item name="textAppearanceBodyMedium">
+            @style/TextAppearance.CineScope.BodyMedium
+        </item>
+        <item name="textAppearanceBodySmall">
+            @style/TextAppearance.CineScope.BodySmall
+        </item>
+        <item name="textAppearanceLabelLarge">
+            @style/TextAppearance.CineScope.LabelLarge
+        </item>
     </style>
 </resources>
