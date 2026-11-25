@@ -4,7 +4,7 @@
 
 CineScope е Android приложение за откриване на филми и сериали и поддържане на лична библиотека. Проектът използва Kotlin, Room и TMDB API.
 
-**GitHub:** [MobileApps2026-2401321081](https://github.com/IvoKraichev/MobileApps2026-2401321081))
+**GitHub:** [MobileApps2026-2401321081](https://github.com/IvoKraichev/MobileApps2026-2401321081)
 
 ## Идея
 
