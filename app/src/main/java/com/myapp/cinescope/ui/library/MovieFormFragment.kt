@@ -175,7 +175,7 @@ class MovieFormFragment : Fragment(R.layout.fragment_movie_form) {
                     }
 
                     saveButton.isEnabled =
-                        !state.isSaving && (movieId == NEW_MOVIE_ID || formPopulated)
+                        !saveRequested && (movieId == NEW_MOVIE_ID || formPopulated)
 
                     progress.visibility = if (state.isSaving) {
                         View.VISIBLE
@@ -196,6 +196,11 @@ class MovieFormFragment : Fragment(R.layout.fragment_movie_form) {
                             }
 
                             state.message != null -> {
+                                findNavController()
+                                    .previousBackStackEntry
+                                    ?.savedStateHandle
+                                    ?.set(SAVE_RESULT_KEY, state.message)
+
                                 saveRequested = false
                                 viewModel.clearMessages()
                                 closeForm()
@@ -305,5 +310,6 @@ class MovieFormFragment : Fragment(R.layout.fragment_movie_form) {
     companion object {
         const val ARG_MOVIE_ID = "movieId"
         const val NEW_MOVIE_ID = -1L
+        const val SAVE_RESULT_KEY = "movieSaveResult"
     }
 }

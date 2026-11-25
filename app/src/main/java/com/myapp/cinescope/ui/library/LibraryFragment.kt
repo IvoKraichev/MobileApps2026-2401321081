@@ -43,6 +43,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
 
         configureList(view)
         observeUiState(view)
+        observeSaveResult()
 
         addMovieButton.setOnClickListener {
             viewModel.clearMessages()
@@ -130,5 +131,30 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
             R.id.action_libraryFragment_to_movieFormFragment,
             bundleOf(MovieFormFragment.ARG_MOVIE_ID to localId)
         )
+    }
+
+    private fun observeSaveResult() {
+        val savedStateHandle =
+            findNavController().currentBackStackEntry?.savedStateHandle ?: return
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                savedStateHandle
+                    .getStateFlow<String?>(MovieFormFragment.SAVE_RESULT_KEY, null)
+                    .collect { message ->
+                        if (message != null) {
+                            Snackbar.make(
+                                requireView(),
+                                message,
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+
+                            savedStateHandle.remove<String>(
+                                MovieFormFragment.SAVE_RESULT_KEY
+                            )
+                        }
+                    }
+            }
+        }
     }
 }
