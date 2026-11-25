@@ -26,16 +26,24 @@ data class CatalogUiState(
             .toList()
 
     val visibleResults: List<Movie>
-        get() = results.filter { movie ->
-            val matchesMediaType = selectedMediaType == null ||
-                    movie.mediaType == selectedMediaType
+        get() {
+            val normalizedGenre = selectedGenre
+                ?.trim()
+                ?.takeIf { it.isNotEmpty() }
 
-            val matchesGenre = selectedGenre == null ||
-                    movie.genreNames
-                        .split(",")
-                        .map(String::trim)
-                        .any { it.equals(selectedGenre, ignoreCase = true) }
+            return results.filter { movie ->
+                val matchesMediaType =
+                    selectedMediaType == null ||
+                            movie.mediaType == selectedMediaType
 
-            matchesMediaType && matchesGenre
+                val matchesGenre =
+                    normalizedGenre == null ||
+                        movie.genreNames
+                            .split(",")
+                            .map(String::trim)
+                            .any { it.equals(normalizedGenre, ignoreCase = true) }
+
+                matchesMediaType && matchesGenre
+            }
         }
 }
