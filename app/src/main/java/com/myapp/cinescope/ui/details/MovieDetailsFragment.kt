@@ -22,6 +22,7 @@ import com.myapp.cinescope.ui.common.bindMovieRatings
 import com.myapp.cinescope.ui.images.loadTmdbPoster
 import com.myapp.cinescope.ui.library.LibraryViewModel
 import com.myapp.cinescope.ui.library.LibraryViewModelFactory
+import com.myapp.cinescope.ui.library.MovieFormFragment
 import kotlinx.coroutines.launch
 
 class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
@@ -94,6 +95,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
 
         renderMovie(movie)
         observeLibrary()
+        observeSaveResult()
     }
 
     private fun observeLibrary() {
@@ -231,6 +233,31 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
             isInWatchlist = args.getBoolean(ARG_IS_IN_WATCHLIST),
             personalNotes = args.getString(ARG_NOTES).orEmpty()
         )
+    }
+
+    private fun observeSaveResult() {
+        val savedStateHandle =
+            findNavController().currentBackStackEntry?.savedStateHandle ?: return
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                savedStateHandle
+                    .getStateFlow<String?>(MovieFormFragment.SAVE_RESULT_KEY, null)
+                    .collect { message ->
+                        if (message != null) {
+                            Snackbar.make(
+                                requireView(),
+                                message,
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+
+                            savedStateHandle.remove<String>(
+                                MovieFormFragment.SAVE_RESULT_KEY
+                            )
+                        }
+                    }
+            }
+        }
     }
 
     companion object {
