@@ -5,6 +5,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import android.view.View
+import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +19,26 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val navHost = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+
+        val navigationBar =
+            findViewById<NavigationBarView>(R.id.bottomNavigation)
+
+        navigationBar.setupWithNavController(navHost.navController)
+
+        navHost.navController.addOnDestinationChangedListener { _, destination, _ ->
+            navigationBar.visibility =
+                if (
+                    destination.id == R.id.movieFormFragment ||
+                    destination.id == R.id.movieDetailsFragment
+                ) {
+                    View.GONE
+                } else {
+                    View.VISIBLE
+                }
         }
     }
 }

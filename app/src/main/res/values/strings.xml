@@ -1,3 +1,58 @@
 <resources>
     <string name="app_name">CineScope</string>
+    <string name="my_library">Моята библиотека</string>
+    <string name="add_movie">Добави заглавие</string>
+    <string name="empty_library">Библиотеката е празна. Добави първото си заглавие.</string>
+
+    <string name="favorite_btn">Любими</string>
+    <string name="watchlist_btn">За гледане</string>
+    <string name="delete_btn">Изтрий</string>
+
+    <string name="catalog_title">Каталог</string>
+    <string name="library_title">Библиотека</string>
+
+    <string name="search_film_or_tv">Търси филм или сериал</string>
+    <string name="search_button">Търси</string>
+    <string name="title_type">Тип заглавие</string>
+    <string name="movie_type_all">Всички</string>
+    <string name="try_again_button">Опитай отново</string>
+    <string name="tmdb_attribution">This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
+
+    <string name="add_to_library">Добави в личната библиотека</string>
+    <string name="movie_details">Подробности</string>
+    
+    <string name="favorites_title">Любими</string>
+    <string name="watchlist_title">За гледане</string>
+    <string name="favorites_empty">Още няма добавени любими заглавия.</string>
+    <string name="watchlist_empty">Списъкът за гледане е празен.</string>
+
+    <string name="genre_filter_hint">Филтрирай по жанр</string>
+    <string name="all_genres">Всички жанрове</string>
+
+    <string name="back_button">Назад</string>
+    <string name="share_title_button">Сподели заглавието</string>
+    <string name="add_details_to_library">Добави в библиотеката</string>
+    <string name="add_to_favorite">Добави в любими</string>
+    <string name="add_to_watchlist">Добави за гледане</string>
+    <string name="edit_info">Редактирай личните данни</string>
+
+    <string name="movie_form_add_title">Добави заглавие</string>
+    <string name="movie_form_edit_title">Редактирай заглавие</string>
+    <string name="movie_title_label">Заглавие</string>
+    <string name="movie_type_label">Тип</string>
+    <string name="movie_type_movie">Филм</string>
+    <string name="movie_type_tv">Сериал</string>
+    <string name="movie_release_date_label">Дата на излизане</string>
+    <string name="movie_genres_label">Жанрове</string>
+    <string name="movie_overview_label">Описание</string>
+    <string name="movie_user_rating_label">Моята оценка (0–10)</string>
+    <string name="movie_notes_label">Лични бележки</string>
+    <string name="movie_favorite_label">Любимо</string>
+    <string name="movie_watchlist_label">За гледане</string>
+    <string name="movie_save">Запази</string>
+    <string name="movie_cancel">Отказ</string>
+    <string name="movie_title_required">Въведи заглавие.</string>
+    <string name="movie_type_required">Избери тип.</string>
+    <string name="movie_rating_invalid">Оценката трябва да е число между 0 и 10.</string>
+    <string name="movie_not_found">Записът не беше намерен.</string>
 </resources>

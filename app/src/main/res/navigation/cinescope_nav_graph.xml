@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cinescope_nav_graph"
+    app:startDestination="@id/catalogFragment">
+
+
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.myapp.cinescope.ui.catalog.CatalogFragment"
+        android:label="Каталог"
+        tools:layout="@layout/fragment_catalog">
+
+        <action
+            android:id="@+id/action_catalogFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.myapp.cinescope.ui.library.LibraryFragment"
+        android:label="Библиотека"
+        tools:layout="@layout/fragment_library">
+
+        <action
+            android:id="@+id/action_libraryFragment_to_movieFormFragment"
+            app:destination="@id/movieFormFragment" />
+
+        <action
+            android:id="@+id/action_libraryFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.myapp.cinescope.ui.collection.CollectionFragment"
+        android:label="Любими"
+        tools:layout="@layout/fragment_collection">
+
+        <argument
+            android:name="collectionType"
+            app:argType="string"
+            android:defaultValue="FAVORITES" />
+
+        <action
+            android:id="@+id/action_favoritesFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/watchlistFragment"
+        android:name="com.myapp.cinescope.ui.collection.CollectionFragment"
+        android:label="За гледане"
+        tools:layout="@layout/fragment_collection">
+
+        <argument
+            android:name="collectionType"
+            app:argType="string"
+            android:defaultValue="WATCHLIST" />
+
+        <action
+            android:id="@+id/action_watchlistFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.myapp.cinescope.ui.details.MovieDetailsFragment"
+        android:label="Подробности"
+        tools:layout="@layout/fragment_movie_details">
+
+        <action
+            android:id="@+id/action_movieDetailsFragment_to_movieFormFragment"
+            app:destination="@id/movieFormFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieFormFragment"
+        android:name="com.myapp.cinescope.ui.library.MovieFormFragment"
+        android:label="Заглавие"
+        tools:layout="@layout/fragment_movie_form">
+
+        <argument
+            android:name="movieId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+</navigation>

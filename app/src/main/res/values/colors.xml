@@ -2,4 +2,30 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="cine_primary">#B8404B</color>
+    <color name="cine_on_primary">#FFFFFF</color>
+    <color name="cine_primary_container">#FADADD</color>
+    <color name="cine_on_primary_container">#3B0710</color>
+
+    <color name="cine_secondary">#435466</color>
+    <color name="cine_on_secondary">#FFFFFF</color>
+    <color name="cine_secondary_container">#DCE5F1</color>
+    <color name="cine_on_secondary_container">#101D2B</color>
+
+    <color name="cine_tertiary">#745B00</color>
+    <color name="cine_on_tertiary">#FFFFFF</color>
+    <color name="cine_tertiary_container">#FFE08A</color>
+    <color name="cine_on_tertiary_container">#241A00</color>
+
+    <color name="cine_background">#FFF9F6</color>
+    <color name="cine_on_background">#221A1A</color>
+    <color name="cine_surface">#FFF9F6</color>
+    <color name="cine_on_surface">#221A1A</color>
+    <color name="cine_surface_variant">#F1E2DE</color>
+    <color name="cine_on_surface_variant">#504544</color>
+    <color name="cine_outline">#817372</color>
+
+    <color name="cine_error">#BA1A1A</color>
+    <color name="cine_on_error">#FFFFFF</color>
 </resources>
