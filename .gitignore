@@ -33,3 +33,6 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+!/аpk/
+!/apk/app-release.apk
